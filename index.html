@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #details{
+            width: 550px;
+        }
+        p{
+            text-align: justify;
+        }
+    </style>
+
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+
+    <script>
+        $(document).ready(function(){
+           $("#details").accordion({animate:2000,
+                                   beforeActivate:function(event, ui){
+                                       if($(ui.newHeader).attr("id") == "secret"){
+                                           $(this).preventDefault();
+                                       }
+                                   },
+                                     activate:function(even, ui) {
+                                        alert("Old Header: " + $(ui.oldHeader).text() + "\n" +
+                                             "Old Panel: " + $(ui.oldPanel).text() + "\n" +
+                                             "New Header: " + $(ui.newHeader).text() + "\n" +
+                                             "New Panel: " + $(ui.newPanel).text());
+                                       
+                                     }});
+           //animate: true/false, number - duration of animation
+           //animate:{duration:3000, easing:"easeOutBounce"}
+
+           //event:"dblclick"/ "mouseover" /" click"
+           // {collapsible:true, active:true/num - diplays the chosen panel, false - all sections to be collapsed
+           
+            // heightStyle: "auto"(default value), "fill"(the height will be based to the accordion height),
+            // content(display text in panel without any scrollers)"
+           
+            // activate: function(event, ui){ alert($(ui.newPanel).height());  } // displays the panel height
+           
+            // header:"h1" - specify the headers
+          
+           // ( {icons:{"header":"ui-icon-plusthick","activeHeader":"ui-icon-minusthick"}
+        });
+    </script>
+</head>
+<body>
+    <div id="details">
+        <h2>jQuery</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, commodi, tenetur nulla, quasi labore veniam velit obcaecati corporis nobis consequuntur corrupti explicabo necessitatibus alias in doloribus laudantium praesentium iusto! Consectetur?</p>
+        <h2>jQuery UI</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo quidem, soluta doloremque ullam corrupti laborum. Magni dicta, illum illo aliquam commodi inventore voluptates, optio eos alias saepe tempora eligendi odio!</p>
+        <h2>jQuery Mobile</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quos temporibus velit voluptates tempora. Error, aliquid? Tempore officiis, repudiandae quibusdam assumenda perferendis debitis, nostrum voluptate deserunt corrupti sed voluptatum repellendus.</p>
+        <h2 id="secret">Secret Message</h2>
+        <p>secret shhhh</p>
+    </div>
+</body>
+</html>
